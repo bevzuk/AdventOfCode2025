@@ -1,5 +1,5 @@
 import pytest
-from Day02.number import Number
+from src.number import Number
 
 @pytest.mark.parametrize("number,expected_power", [
     (0, 0),

@@ -30,7 +30,6 @@ Your job is to find all of the invalid IDs that appear in the given ranges. In t
 446443-446449 has one invalid ID, 446446.
 38593856-38593862 has one invalid ID, 38593859.
 The rest of the ranges contain no invalid IDs.
-Adding up all the invalid IDs in this example
- produces 1227775554.
+Adding up all the invalid IDs in this example produces 1227775554.
 
 What do you get if you add up all of the invalid IDs?

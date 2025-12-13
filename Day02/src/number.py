@@ -14,9 +14,12 @@ class Number:
 
         return power
 
+    def is_power_even(self) -> bool:
+        return self.power() % 2 == 0
+
     def power_even(self) -> int:
         power = self.power()
-        if self.power() % 2 == 1:
+        if not self.is_power_even():
             power += 1
         return power
     
