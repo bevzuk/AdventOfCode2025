@@ -1,4 +1,4 @@
-from Day02.src.invalid_id import InvalidId
+from src.invalid_id import InvalidId
 
 
 class Range:
