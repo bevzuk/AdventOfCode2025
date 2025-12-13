@@ -17,3 +17,15 @@ from src.invalid_id import InvalidId
 def test_invalid_id_init(number, expected_invalid_id_value):
     n = InvalidId(number)
     assert n.value() == expected_invalid_id_value
+
+
+@pytest.mark.parametrize("current_invalid_id,expected_next_invalid_id", [
+    (11, 22),
+    (22, 33),
+    (99, 1010),
+    (1010, 1111),
+    (123123, 124124),
+])
+def test_invalid_id_next(current_invalid_id, expected_next_invalid_id):
+    invalid_id = InvalidId(current_invalid_id)
+    assert invalid_id.next() == InvalidId(expected_next_invalid_id)
