@@ -1,5 +1,6 @@
 from src.range import Range
 from src.invalid_id import InvalidId
+from src.number import Number
 
 
 def parse_ranges(input_line: str) -> list[Range]:
@@ -19,22 +20,12 @@ def parse_ranges(input_line: str) -> list[Range]:
 
 
 def find_invalid_ids_in_range(range_obj: Range) -> list[InvalidId]:
-    """Find all invalid IDs within a range.
-
-    An invalid ID is one that consists of a sequence repeated twice
-    (e.g., 11, 22, 123123, etc.)
-
-    Args:
-        range_obj: The range to search in
-
-    Returns:
-        List of InvalidId objects found in the range
-    """
     invalid_ids = []
-    current_id = InvalidId(range_obj.start)
+    current_id = Number(range_obj.start)
 
     while range_obj.contains(current_id):
-        invalid_ids.append(current_id)
+        if current_id.is_invalid_id():
+            invalid_ids.append(current_id)
         current_id = current_id.next()
 
     return invalid_ids
@@ -55,14 +46,15 @@ def solve(input_file: str) -> int:
     ranges = parse_ranges(input_line)
 
     all_invalid_ids = []
-    for range_obj in ranges:
-        invalid_ids = find_invalid_ids_in_range(range_obj)
+    for range in ranges:
+        invalid_ids = find_invalid_ids_in_range(range)
+        print(f"\nIn range [{range.start}-{range.end}] found invalid ids:")
+        print(", ".join(str(id.value()) for id in invalid_ids))
         all_invalid_ids.extend(invalid_ids)
 
     # Sum all unique invalid ID values
     total = sum(invalid_id.value() for invalid_id in set(all_invalid_ids))
     return total
-
 
 if __name__ == '__main__':
     result = solve('input.txt')
